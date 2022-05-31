@@ -1,4 +1,11 @@
 let modelLoading;
+let initialized = false;
+
+let templateSelect = document.getElementById("template");
+templateSelect.onchange = async function (){
+  let template = document.getElementById("template").selectedOptions[0].value;
+  await recognizer.updateRuntimeSettingsFromString(template); // will load model
+}
 
 let startButton = document.getElementById("startButton");
 startButton.onclick = function(){
@@ -59,13 +66,22 @@ async function init(){
       document.getElementById("modal").className += " active";
     }
   };
+  let template = document.getElementById("template").selectedOptions[0].value;
+  await recognizer.updateRuntimeSettingsFromString(template); // will load model
   document.getElementById("status").remove();
+  initialized = true;
 }
 
 async function startScan(){
-  let template = document.getElementById("template").selectedOptions[0].value;
-  await recognizer.updateRuntimeSettingsFromString(template); // will load model
-  await recognizer.startScanning(true);
+  if (recognizer) {
+    await recognizer.startScanning(true);
+    return true;
+  }else{
+    return false;
+  }
 }
 
-    
+function hideControls(){
+  document.getElementById("controls").style.display = "none";
+}
+
