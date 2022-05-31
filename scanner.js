@@ -1,3 +1,5 @@
+let modelLoading;
+
 let startButton = document.getElementById("startButton");
 startButton.onclick = function(){
   startScan();
@@ -29,10 +31,16 @@ async function init(){
   Dynamsoft.DLR.LabelRecognizer.onResourcesLoadStarted = (resourcePath) => {
     console.log("Loading " + resourcePath);
     // Show a visual cue that a model file is being downloaded
+    modelLoading = document.createElement("div");
+    modelLoading.innerText = "Loading model";
+    document.body.prepend(modelLoading);
   };
   Dynamsoft.DLR.LabelRecognizer.onResourcesLoaded = (resourcePath) => {
       console.log("Finished loading " + resourcePath);
-      // Hide the visual cue
+      if (modelLoading) {
+        modelLoading.remove();
+        modelLoading = null;
+      }
   };
   recognizer = await Dynamsoft.DLR.LabelRecognizer.createInstance();
   Dynamsoft.DCE.CameraEnhancer.defaultUIElementURL = Dynamsoft.DLR.LabelRecognizer.defaultUIElementURL;
@@ -56,7 +64,7 @@ async function init(){
 
 async function startScan(){
   let template = document.getElementById("template").selectedOptions[0].value;
-  await recognizer.updateRuntimeSettingsFromString(template);
+  await recognizer.updateRuntimeSettingsFromString(template); // will load model
   await recognizer.startScanning(true);
 }
 
