@@ -51,6 +51,7 @@ async function init(){
       document.getElementById("modal").className += " active";
     }
   };
+  document.getElementById("status").remove();
 }
 
 async function startScan(){
