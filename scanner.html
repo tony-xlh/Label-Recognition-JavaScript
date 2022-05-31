@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Text Scanner</title>
+  <link rel="stylesheet" type="text/css" href="scanner.css" />
+  <script src="dlr/dlr.js"></script>
+  <script src="dce/dce.js"></script>
+  
+</head>
+<body>
+  <div id="controls">
+    Template:
+    <select id="template">
+      <option>video-MRZ</option>
+      <option>video-numberLetter</option>
+    </select>
+    <button id="startButton">Start Scan</button>
+    <div id="confirmedResult"></div>
+  </div>
+  <div id="modal" class="modal-window">
+    <div class="overflow">
+      <pre id="result"></pre>
+    </div>
+    
+    <button id="correctButton">Correct</button>
+    <button id="rescanButton">Rescan</button>
+  </div>
+  <script src="scanner.js"></script>
+</body>
+</html>
