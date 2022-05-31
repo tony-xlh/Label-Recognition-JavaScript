@@ -32,7 +32,7 @@ async function init(){
     console.log("Loading " + resourcePath);
     // Show a visual cue that a model file is being downloaded
     modelLoading = document.createElement("div");
-    modelLoading.innerText = "Loading model";
+    modelLoading.innerText = "Loading model...";
     document.body.prepend(modelLoading);
   };
   Dynamsoft.DLR.LabelRecognizer.onResourcesLoaded = (resourcePath) => {
