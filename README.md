@@ -2,4 +2,4 @@
 
 Demo of Dynamsoft Label Recognizer JavaScript
 
-[Demo link](https://blog.xulihang.me/Label-Recognition-JavaScript/scanner.html)
+[Demo link](https://tony-xlh.github.io/Label-Recognition-JavaScript/scanner.html)
